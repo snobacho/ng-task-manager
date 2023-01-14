@@ -19,8 +19,9 @@ export class AppComponent {
       todo.name = this.newTodo
       todo.isCompleted = true
       this.todos.push(todo)
+      this.newTodo= ''
     } else {
-      alert('bla')
+      alert('please add task')
     }
  
   }
