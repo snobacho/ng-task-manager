@@ -1,14 +1,18 @@
 <h1 class="title-todo">Task Manager</h1>
-
 <table>
   <input type="text" [(ngModel)]="newTodo" placeholder="add your task">
   <button class="add-todo-btn" type="submit" (click)="addTodo()">Add Task</button>
   <tbody>
     <tr *ngFor="let todo of todos; let i = index">
-      <th>{{i + 1}}</th>
-      <td class="{{(!todo.isCompleted)? 'done': ''}}" (click)="done(i)">{{todo.name}}</td>
+      <th [ngStyle]="{'color': getRandomColor()}">{{i + 1}}</th>
+      <td
+        class="{{(!todo.isCompleted)? 'done': ''}}"
+        (click)="done(i)" 
+        [ngStyle]="{'color': getRandomColor()}" 
+        >
+        {{todo.name}}
+      </td>
       <td class="remove-todo" (click)="removeTodo(i)"> X </td>
     </tr>
   </tbody>
 </table>
-
