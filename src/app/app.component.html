@@ -6,7 +6,7 @@
     <tr *ngFor="let todo of todos; let i = index">
       <th [ngStyle]="{'color': getRandomColor()}">{{i + 1}}</th>
       <td
-        class="{{(!todo.isCompleted)? 'done': ''}}"
+        class="{{(!todo.isCompleted)? 'done': ''}}" 
         (click)="done(i)" 
         [ngStyle]="{'color': getRandomColor()}" 
         >

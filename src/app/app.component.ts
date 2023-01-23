@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Todo } from './Todos';
 
 
@@ -7,18 +7,27 @@ import { Todo } from './Todos';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   todos: Todo[]= []
   newTodo: string  
+
    
+  ngOnInit() {
+    const savedTodo = localStorage.getItem('todo');
+    if (savedTodo) {
+      this.todos = JSON.parse(savedTodo);
+    }
+  }
+
 
   addTodo(){
     if(this.newTodo){
       let todo = new Todo
       todo.name = this.newTodo
-      todo.isCompleted = true
       this.todos.push(todo)
+      localStorage.setItem('todo', JSON.stringify(this.todos));
       this.newTodo= ''
+      todo.isCompleted = true
     } else {
       alert('please add task')
     }
@@ -31,6 +40,8 @@ export class AppComponent {
   removeTodo(id: number){
     console.log();
       this.todos = this.todos.filter((y, i) => i !==id)
+      this.todos.splice(id, 1);
+    localStorage.setItem('todo', JSON.stringify(this.todos));
   }
 
 // * random color *******
